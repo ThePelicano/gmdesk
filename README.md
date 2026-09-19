@@ -14,13 +14,5 @@ Este é um projeto pessoal em desenvolvimento, construído para otimizar e facil
 - **Rust (Tauri):** Motor principal de alta performance e baixo consumo de memória.
 - **JavaScript & CSS:** Toda a lógica visual, modais e customizações da interface.
 
-## ⚙️ Instalação (Windows)
-Este projeto conta com compilação automática na nuvem usando o GitHub Actions!
-Sempre que o código é atualizado, uma nova versão do `.exe` é gerada.
-
-1. Vá na aba **Releases** deste repositório.
-2. Baixe o arquivo de instalação para Windows.
-3. Se desejar usar a versão totalmente portátil, extraia o `.exe` que não requer privilégios de administrador para usar na sua rede.
-
 ---
 *Criado e mantido por Pelicano.*
