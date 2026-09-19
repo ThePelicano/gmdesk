@@ -36,4 +36,5 @@ jobs:
           releaseBody: "Nova compilação automatizada do GM Desk para Windows."
           releaseDraft: false
           prerelease: false
+          includeRelease: true
           args: --target x86_64-pc-windows-msvc
