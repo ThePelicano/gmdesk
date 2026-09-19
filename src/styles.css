@@ -1,0 +1,281 @@
+body {
+  background-color: #1e1e2f;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  user-select: none; /* Previne selecao acidental como app nativo */
+}
+h1, h2 { margin-bottom: 10px; }
+
+.botao-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.pdv-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+button.pdv-btn {
+  padding: 15px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  min-width: 160px;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+button.pdv-btn span.local {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-bottom: 5px;
+}
+
+button.pdv-btn span.ip {
+  font-size: 11px;
+  opacity: 0.7;
+  margin-top: 5px;
+}
+
+/* Cores por Setor */
+button.pdv-btn.setor-frente { background-color: #28a745; }
+button.pdv-btn.setor-frente:hover { background-color: #218838; }
+
+button.pdv-btn.setor-atacado { background-color: #007bff; }
+button.pdv-btn.setor-atacado:hover { background-color: #0056b3; }
+
+button.pdv-btn.setor-lanchonete { background-color: #fd7e14; }
+button.pdv-btn.setor-lanchonete:hover { background-color: #e37012; }
+
+button.pdv-btn.setor-boteco { background-color: #6f42c1; }
+button.pdv-btn.setor-boteco:hover { background-color: #59359a; }
+
+button.pdv-btn.setor-mixmais { background-color: #20c997; }
+button.pdv-btn.setor-mixmais:hover { background-color: #1aa179; }
+
+button.pdv-btn.setor-personalizado { background-color: #6c757d; }
+button.pdv-btn.setor-personalizado:hover { background-color: #5a6268; }
+
+button.pdv-btn.offline {
+  background-color: #dc3545 !important;
+}
+button.pdv-btn.offline:hover {
+  background-color: #c82333 !important;
+}
+
+.menu-container {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.menu-btn {
+  background: rgba(0,0,0,0.3);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0px 8px;
+  transition: 0.2s;
+}
+.menu-btn:hover {
+  background: rgba(0,0,0,0.7);
+}
+
+.menu-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: #2a2a40;
+  min-width: 110px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.5);
+  border-radius: 4px;
+  z-index: 10;
+  overflow: hidden;
+  text-align: left;
+}
+.menu-dropdown.show {
+  display: block;
+}
+
+.menu-dropdown div {
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #3a3a50;
+  color: #fff;
+}
+.menu-dropdown div:last-child {
+  border-bottom: none;
+}
+.menu-dropdown div:hover {
+  background-color: #3a3a50;
+}
+
+/* Modals */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+.modal-overlay.show { display: flex; }
+
+.modal-box {
+  background-color: #2a2a40;
+  padding: 30px;
+  border-radius: 12px;
+  width: 320px;
+  text-align: left;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  position: relative;
+}
+.modal-box h3 { margin-top: 0; margin-bottom: 20px; text-align: center; }
+.modal-box input, .modal-box select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #000;
+  box-sizing: border-box;
+}
+
+.modal-box select option {
+  background-color: #fff;
+  color: #000;
+}
+.modal-box button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.modal-box .btn-save { background-color: #28a745; color: white; }
+.modal-box .btn-save:hover { background-color: #218838; }
+.modal-box .btn-cancel { background-color: #dc3545; color: white; }
+.modal-box .btn-cancel:hover { background-color: #c82333; }
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #aaa;
+}
+.close-modal:hover { color: #fff; }
+
+.gear-icon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.gear-icon:hover { transform: rotate(45deg); }
+
+.pdv-btn.btn-add-pdv {
+  background-color: transparent;
+  border: 2px dashed #6c757d;
+  color: #6c757d;
+  font-size: 40px;
+}
+.pdv-btn.btn-add-pdv:hover {
+  background-color: rgba(255,255,255,0.05);
+  color: #fff;
+  border-color: #fff;
+}
+
+.action-btn {
+  padding: 10px 20px;
+  background-color: #ffc107;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+.action-btn:hover { background-color: #e0a800; }
+
+#hora {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+#criador {
+  position: absolute;
+  top: 40px;
+  right: 20px;
+  font-size: 14px;
+  color: #cccccc;
+}
+
+/* Toast Notification (Desfazer Exclusão) */
+.toast {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 16px;
+  position: fixed;
+  z-index: 2000;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  opacity: 0;
+  transition: opacity 0.5s, bottom 0.5s;
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 50px;
+}
+
+.toast-btn {
+  background-color: #ffc107;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.toast-btn:hover {
+  background-color: #e0a800;
+}

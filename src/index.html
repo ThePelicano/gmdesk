@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>GM Desk</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <!-- Gear Icon for Settings -->
+  <div class="gear-icon" onclick="abrirModalConfig()" title="Configurações">⚙️</div>
+
+  <h1 id="app-main-title">GM Desk</h1>
+  
+  <br>
+  
+  <button id="btn-verificar" class="action-btn" onclick="verificarStatusTodos()">Verificar Status dos PDVs</button>
+  <button class="action-btn" style="background-color: #17a2b8; color: white;" onclick="exportarPerfil()">Exportar Perfil</button>
+  <button class="action-btn" style="background-color: #6f42c1; color: white;" onclick="importarPerfil()">Importar Perfil</button>
+
+  <div id="pdv-list" class="botao-container">
+    <!-- Botao + (Adicionar) e botoes de PDV serao renderizados aqui -->
+  </div>
+
+  <div id="hora"></div>
+  <div id="criador">Criado por Janairo</div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <span id="toast-message">PDV excluído.</span>
+    <button class="toast-btn" onclick="desfazerExclusao()">Desfazer</button>
+  </div>
+
+  <!-- Modal Configuration -->
+  <div id="modal-config" class="modal-overlay">
+    <div class="modal-box">
+      <span class="close-modal" onclick="fecharModalConfig()">&times;</span>
+      <h3>Configurações</h3>
+      
+      <label>Título do Aplicativo</label>
+      <input type="text" id="config-title" placeholder="Ex: GM Desk">
+      
+      <label>Resolução da Janela VNC (Largura)</label>
+      <input type="number" id="vnc-width" placeholder="1280">
+      
+      <label>Resolução da Janela VNC (Altura)</label>
+      <input type="number" id="vnc-height" placeholder="720">
+      
+      <button class="btn-save" onclick="salvarConfiguracoes()">Salvar Configurações</button>
+    </div>
+  </div>
+
+  <!-- Modal PDV (Add/Edit) -->
+  <div id="modal-pdv" class="modal-overlay">
+    <div class="modal-box">
+      <span class="close-modal" onclick="fecharModalPDV()">&times;</span>
+      <h3 id="modal-pdv-title">Adicionar Novo PDV</h3>
+      
+      <label>Setor</label>
+      <select id="novo-setor" onchange="toggleSetorCustom()">
+        <option value="Frente de Loja">Frente de Loja</option>
+        <option value="Balcão Atacado">Balcão Atacado</option>
+        <option value="Lanchonete">Lanchonete</option>
+        <option value="Boteco">Boteco</option>
+        <option value="Mix Mais">Mix Mais</option>
+        <option value="Personalizado">Personalizado...</option>
+      </select>
+      <input type="text" id="novo-setor-custom" placeholder="Digite o setor..." style="display: none;">
+      
+      <label>Número do PDV</label>
+      <input type="text" id="novo-numero" placeholder="Ex: 1">
+      
+      <label>IP da Máquina</label>
+      <input type="text" id="novo-ip" placeholder="Ex: 192.168.1.10">
+      
+      <button id="btn-adicionar" class="btn-save" onclick="adicionarPDV()">Salvar PDV</button>
+    </div>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
