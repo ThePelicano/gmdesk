@@ -199,7 +199,7 @@ pub fn open_vnc_window(app: AppHandle, ip: String, width: f64, height: f64) -> R
         return Ok(());
     }
 
-    let _webview_window = WebviewWindowBuilder::new(
+    let webview_window = WebviewWindowBuilder::new(
         &app,
         label,
         WebviewUrl::External(url.parse().unwrap())
@@ -215,6 +215,14 @@ pub fn open_vnc_window(app: AppHandle, ip: String, width: f64, height: f64) -> R
     "#)
     .build()
     .map_err(|e| e.to_string())?;
+
+    let window_clone = webview_window.clone();
+    webview_window.on_window_event(move |event| {
+        if let tauri::WindowEvent::CloseRequested { api, .. } = event {
+            api.prevent_close();
+            let _ = window_clone.destroy();
+        }
+    });
 
     Ok(())
 }
