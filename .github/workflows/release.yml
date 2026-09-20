@@ -43,28 +43,24 @@ jobs:
         run: npm install
 
       - name: Build Tauri app
-        id: tauri
-        uses: tauri-apps/tauri-action@v0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tagName: v0.1.0-${{ github.run_id }}
-          releaseName: "GM Desk v0.1.0"
-          releaseBody: "Nova compilação automatizada do GM Desk para Linux e Windows."
-          releaseDraft: false
-          prerelease: false
-          includeRelease: false
-          args: ${{ matrix.args }}
+        run: npm run tauri build
 
-      - name: Encontrar e Renomear Portable (Windows)
+      - name: Preparar Portable Executable (Windows)
         if: matrix.os == 'windows-latest'
-        run: |
-          copy "src-tauri\target\x86_64-pc-windows-msvc\release\gmdesk.exe" "GM_Desk_Portable.exe"
+        run: copy "src-tauri\target\release\gmdesk.exe" "GM_Desk_Portable.exe"
         shell: cmd
 
-      - name: Fazer Upload do Portable
-        if: matrix.os == 'windows-latest'
+      - name: Fazer Upload dos Instaladores e Portable
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v0.1.0-${{ github.run_id }}
-          files: GM_Desk_Portable.exe
+          name: "GM Desk v0.1.0"
+          body: "Nova compilação automatizada do GM Desk para Linux e Windows."
+          fail_on_unmatched_files: false
+          files: |
+            GM_Desk_Portable.exe
+            src-tauri/target/release/bundle/nsis/*.exe
+            src-tauri/target/release/bundle/msi/*.msi
+            src-tauri/target/release/bundle/deb/*.deb
+            src-tauri/target/release/bundle/rpm/*.rpm
+            src-tauri/target/release/bundle/appimage/*.AppImage
